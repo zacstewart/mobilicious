@@ -4,15 +4,15 @@ module MightBeMobile
   MOBILE_REGEX = /mobile/i
 
   def is_mobile?
-    if cookie[:mobile_param]
-      cookie[:mobile_param] == '1'
+    if cookies[:mobile_param]
+      cookies[:mobile_param] == '1'
     else
       request.user_agent =~ MOBILE_REGEX
     end
   end
 
   def prepare_for_mobile
-    cookie[:mobile_param] = params[:mobile] if params[:mobile]
+    cookies[:mobile_param] = params[:mobile] if params[:mobile]
     when_mobile if is_mobile?
   end
 
